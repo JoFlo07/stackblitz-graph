@@ -60,7 +60,9 @@ export class AppComponent implements OnInit {
       backgroundColor: "rgba(255,255,255,1)",
       pointFormatter: function() {
         return (
-          "<strong>Overall</strong> </br></br> Exposure </br>" +
+          "<strong>" +
+          this.options.custom.riskTitle +
+          "</strong> </br></br> Exposure </br>" +
           this.name +
           "</br> </br> Security Level </br>" +
           this.x +
@@ -102,9 +104,9 @@ export class AppComponent implements OnInit {
             useHTML: true,
             formatter: function() {
               return (
-                '<div class="datalabel"><b>' +
+                '<div class="datalabel">' +
                 this.point.options.custom.riskType +
-                '</div><br/><div class="datalabelInside"><b>' +
+                '</div><br/><div class="datalabelInside">' +
                 Highcharts.numberFormat(this.y, 1) +
                 "</div>"
               );
@@ -132,7 +134,8 @@ export class AppComponent implements OnInit {
         data: [
           {
             custom: {
-              riskType: "BI"
+              riskType: "BI",
+              riskTitle: "Business Interruption"
             },
             x: 10,
             y: 4.0,
@@ -154,7 +157,8 @@ export class AppComponent implements OnInit {
           },
           {
             custom: {
-              riskType: "DB"
+              riskType: "DB",
+              riskTitle: "Data Breach"
             },
             x: 25,
             y: 2.1,
@@ -176,7 +180,8 @@ export class AppComponent implements OnInit {
           },
           {
             custom: {
-              riskType: "OV"
+              riskType: "OV",
+              riskTitle: "Overall"
             },
             x: 0,
             y: 0,
