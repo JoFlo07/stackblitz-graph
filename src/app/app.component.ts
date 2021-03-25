@@ -229,22 +229,10 @@ export class AppComponent implements OnInit {
   };
 
   update() {
-    this.chart.series[0].setData([
-      {
-        x: 20,
-        y: 2.0,
-        name: "very-low to low"
-      },
-      {
-        x: 55,
-        y: 2.1,
-        name: "very-low"
-      },
-      {
-        x: 90,
-        y: 1.0,
-        name: "low"
-      }
-    ]);
+    this.chart.series[0].data.forEach(d => {
+      d.update({
+        x: 10
+      });
+    });
   }
 }
