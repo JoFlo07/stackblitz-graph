@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
   public options: Highcharts.Options = {
     chart: {
       height: 700,
-      width: 1000,
       plotBackgroundColor: {
         linearGradient: { x1: 1, x2: 0, y1: 0, y2: 1 },
         stops: [[0.2, "#e3463b"], [0.5, "#ffda05"], [0.8, "#19cf1f"]]
@@ -164,7 +163,34 @@ export class AppComponent implements OnInit {
           }
         ]
       }
-    ]
+    ],
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 600
+          },
+          chartOptions: {
+            series: [
+              {
+                type: "bubble",
+                minSize: 35,
+                maxSize: 35
+              }
+            ],
+            plotOptions: {
+              series: {
+                dataLabels: {
+                  style: {
+                    fontSize: 13 + "px"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   };
 
   update() {
