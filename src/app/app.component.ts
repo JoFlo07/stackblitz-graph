@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
 
   public options: Highcharts.Options = {
     chart: {
-      height: 700,
+      height: 600,
       plotBackgroundColor: {
         linearGradient: { x1: 1, x2: 0, y1: 0, y2: 1 },
         stops: [[0.2, "#e3463b"], [0.5, "#ffda05"], [0.8, "#19cf1f"]]
@@ -44,16 +44,8 @@ export class AppComponent implements OnInit {
           }
         },
         dataLabels: {
-          align: "center",
-          color: "#ffffff",
-          style: {
-            textOutline: null,
-            fontSize: 16 + "px"
-          },
           enabled: true,
-          formatter: function() {
-            return Highcharts.numberFormat(this.y, 1);
-          }
+          inside: true
         }
       }
     },
@@ -65,7 +57,7 @@ export class AppComponent implements OnInit {
       enabled: false
     },
     tooltip: {
-      backgroundColor: "#ffffff",
+      backgroundColor: "rgba(255,255,255,1)",
       pointFormatter: function() {
         return (
           "<strong>Overall</strong> </br></br> Exposure </br>" +
@@ -74,7 +66,8 @@ export class AppComponent implements OnInit {
           this.x +
           " %"
         );
-      }
+      },
+      distance: 30
     },
     yAxis: {
       visible: false,
@@ -99,12 +92,48 @@ export class AppComponent implements OnInit {
       {
         type: "bubble",
         name: "",
-        minSize: 60,
-        maxSize: 60,
+        minSize: 55,
+        maxSize: 55,
         color: "transparent",
         showInLegend: false,
+        dataLabels: [
+          {
+            color: "#ffffff",
+            useHTML: true,
+            formatter: function() {
+              return (
+                '<div class="datalabel"><b>' +
+                this.point.options.custom.riskType +
+                '</div><br/><div class="datalabelInside"><b>' +
+                Highcharts.numberFormat(this.y, 1) +
+                "</div>"
+              );
+            },
+            //format: "{point.options.custom.riskType}",
+            style: {
+              textOutline: null,
+              fontSize: 15 + "px"
+            }
+          },
+          {
+            align: "center",
+            color: "#ffffff",
+            enabled: true,
+            style: {
+              textOutline: null,
+              fontSize: 16 + "px"
+            },
+
+            formatter: function() {
+              return Highcharts.numberFormat(this.y, 1);
+            }
+          }
+        ],
         data: [
           {
+            custom: {
+              riskType: "BI"
+            },
             x: 10,
             y: 4.0,
             name: "very-low to low",
@@ -124,6 +153,9 @@ export class AppComponent implements OnInit {
             }
           },
           {
+            custom: {
+              riskType: "DB"
+            },
             x: 25,
             y: 2.1,
             name: "very-low",
@@ -143,6 +175,9 @@ export class AppComponent implements OnInit {
             }
           },
           {
+            custom: {
+              riskType: "OV"
+            },
             x: 0,
             y: 0,
             name: "low",
@@ -168,7 +203,7 @@ export class AppComponent implements OnInit {
       rules: [
         {
           condition: {
-            maxWidth: 600
+            maxWidth: 400
           },
           chartOptions: {
             series: [

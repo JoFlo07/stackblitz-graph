@@ -1,1 +1,12 @@
-/* Add application styles & imports to this file! */
+.datalabelInside {
+  text-align: center;
+  width: 5vw;
+  height: 4vh;
+}
+
+.datalabel {
+  color: #ffffff;
+  position: relative;
+  text-align: center;
+  top: -2px;
+}
