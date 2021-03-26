@@ -100,28 +100,24 @@ export class AppComponent implements OnInit {
         showInLegend: false,
         dataLabels: [
           {
-            color: "#ffffff",
-            useHTML: true,
-            formatter: function() {
-              return (
-                '<div class="datalabel">' +
-                this.point.options.custom.riskType +
-                '</div><br/><div class="datalabelInside">' +
-                Highcharts.numberFormat(this.y, 1) +
-                "</div>"
-              );
-            },
-            //format: "{point.options.custom.riskType}",
+            className: "top-label",
+            allowOverlap: true,
+            format: "{point.options.custom.riskType}",
             style: {
+              color: "#ffffff",
               textOutline: null,
               fontSize: 15 + "px"
-            }
+            },
+            align: "center",
+            verticalAlign: "top",
+            y: -25
           },
           {
+            className: "middle-label",
             align: "center",
-            color: "#ffffff",
-            enabled: true,
+            allowOverlap: true,
             style: {
+              color: "#ffffff",
               textOutline: null,
               fontSize: 16 + "px"
             },
@@ -143,14 +139,20 @@ export class AppComponent implements OnInit {
             events: {
               mouseOver: function(event) {
                 const s = event.target as any;
-                s.dataLabel.css({
-                  color: "#30302E"
+                s.dataLabels.forEach(label => {
+                  if (label.options.className === "middle-label") {
+                    label.css({
+                      color: "#30302E"
+                    });
+                  }
                 });
               },
               mouseOut: function(event) {
                 const s = event.target as any;
-                s.dataLabel.css({
-                  color: "#ffffff"
+                s.dataLabels.forEach(label => {
+                  label.css({
+                    color: "#ffffff"
+                  });
                 });
               }
             }
@@ -166,14 +168,20 @@ export class AppComponent implements OnInit {
             events: {
               mouseOver: function(event) {
                 const s = event.target as any;
-                s.dataLabel.css({
-                  color: "#30302E"
+                s.dataLabels.forEach(label => {
+                  if (label.options.className === "middle-label") {
+                    label.css({
+                      color: "#30302E"
+                    });
+                  }
                 });
               },
               mouseOut: function(event) {
                 const s = event.target as any;
-                s.dataLabel.css({
-                  color: "#ffffff"
+                s.dataLabels.forEach(label => {
+                  label.css({
+                    color: "#ffffff"
+                  });
                 });
               }
             }
@@ -189,14 +197,20 @@ export class AppComponent implements OnInit {
             events: {
               mouseOver: function(event) {
                 const s = event.target as any;
-                s.dataLabel.css({
-                  color: "#30302E"
+                s.dataLabels.forEach(label => {
+                  if (label.options.className === "middle-label") {
+                    label.css({
+                      color: "#30302E"
+                    });
+                  }
                 });
               },
               mouseOut: function(event) {
                 const s = event.target as any;
-                s.dataLabel.css({
-                  color: "#ffffff"
+                s.dataLabels.forEach(label => {
+                  label.css({
+                    color: "#ffffff"
+                  });
                 });
               }
             }
