@@ -1,15 +1,10 @@
 import { Component, OnInit, VERSION } from "@angular/core";
 import * as Highcharts from "highcharts";
+import HighchartsBoost from "highcharts/modules/boost";
+import HighchartsNoData from "highcharts/modules/no-data-to-display";
 
-declare var require: any;
-let Boost = require("highcharts/modules/boost");
-let noData = require("highcharts/modules/no-data-to-display");
-let More = require("highcharts/highcharts-more");
-
-Boost(Highcharts);
-noData(Highcharts);
-More(Highcharts);
-noData(Highcharts);
+HighchartsBoost(Highcharts);
+HighchartsNoData(Highcharts);
 
 @Component({
   selector: "my-app",
@@ -100,7 +95,6 @@ export class AppComponent implements OnInit {
         showInLegend: false,
         dataLabels: [
           {
-            className: "top-label",
             allowOverlap: true,
             format: "{point.options.custom.riskType}",
             style: {
@@ -113,7 +107,7 @@ export class AppComponent implements OnInit {
             y: -25
           },
           {
-            className: "middle-label",
+            className: "center-label",
             align: "center",
             allowOverlap: true,
             style: {
@@ -140,7 +134,7 @@ export class AppComponent implements OnInit {
               mouseOver: function(event) {
                 const s = event.target as any;
                 s.dataLabels.forEach(label => {
-                  if (label.options.className === "middle-label") {
+                  if (label.options.className === "center-label") {
                     label.css({
                       color: "#30302E"
                     });
@@ -169,7 +163,7 @@ export class AppComponent implements OnInit {
               mouseOver: function(event) {
                 const s = event.target as any;
                 s.dataLabels.forEach(label => {
-                  if (label.options.className === "middle-label") {
+                  if (label.options.className === "center-label") {
                     label.css({
                       color: "#30302E"
                     });
@@ -198,7 +192,7 @@ export class AppComponent implements OnInit {
               mouseOver: function(event) {
                 const s = event.target as any;
                 s.dataLabels.forEach(label => {
-                  if (label.options.className === "middle-label") {
+                  if (label.options.className === "center-label") {
                     label.css({
                       color: "#30302E"
                     });
